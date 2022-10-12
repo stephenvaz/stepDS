@@ -118,7 +118,7 @@ int main()
         else if (!isFull(&H3) && display(&q) > look(&H3))
             enqueue(&H3, dequeue(&q));
     }
-    printf("\n i val%d:\n", i);
+    // printf("\n i val%d:\n", i);
     H1.f += 1;
     H2.f += 1;
     H3.f += 1;

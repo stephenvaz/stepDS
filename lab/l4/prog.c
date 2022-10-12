@@ -41,19 +41,6 @@ void traverse(NODE head)
 
 void reverse(NODE *head)
 {
-    // int prev;
-    // for (temp = head; temp->next != NULL; temp = temp->next)
-    // {
-    //     for (curr = temp->next; curr != NULL; curr = curr->next)
-    //     {
-    //         if (curr->data > temp->data)
-    //         {
-    //             prev = curr->data;
-    //             curr->data = temp->data;
-    //             temp->data = prev;
-    //         }
-    //     }
-    // }
     temp = NULL;
     curr = *head;
     while (curr != NULL)
@@ -68,7 +55,6 @@ void reverse(NODE *head)
         *head = temp->prev;
     }
     
-    // return head;
 }
 
 int lengthRecursively(NODE head)
