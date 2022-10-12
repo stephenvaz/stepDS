@@ -107,6 +107,53 @@ int height(Node node)
     }
 }
 
+Node copyTree(Node node)
+{
+    if (node == NULL)
+        return NULL;
+    Node temp = (Node) malloc(sizeof(struct node));
+    temp->data = node->data;
+    temp->left = copyTree(node->left);
+    temp->right = copyTree(node->right);
+    return temp;
+}
+
+int equalTrees(Node node1, Node node2)
+{
+    if (node1 == NULL && node2 == NULL)
+        return 1;
+    if (node1 != NULL && node2 != NULL)
+    {
+        return
+        (
+            node1->data == node2->data &&
+            equalTrees(node1->left, node2->left) &&
+            equalTrees(node1->right, node2->right)
+        );
+    }
+    return 0;
+}
+
+Node printInternalNodes(Node node)
+{
+    if (node == NULL)
+        return NULL;
+    if (node->left != NULL || node->right != NULL)
+        printf("%d ", node->data);
+    printInternalNodes(node->left);
+    printInternalNodes(node->right);
+}
+
+Node printLeafNodes(Node node)
+{
+    if (node == NULL)
+        return NULL;
+    if (node->left == NULL && node->right == NULL)
+        printf("%d ", node->data);
+    printLeafNodes(node->left);
+    printLeafNodes(node->right);
+}
+
 int main()
 {
     Node root;
@@ -127,5 +174,11 @@ int main()
         printlevel(root, i);
         printf("\n");
     }
+    printf("Internal nodes are: ");
+    printInternalNodes(root);
+    printf("\nLeaf nodes are: ");
+    printLeafNodes(root);
+    printf("\n");
+
     return 0;
 }
