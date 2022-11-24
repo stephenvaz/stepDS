@@ -6,20 +6,15 @@ struct node
     int data;
     struct node *left, *right;
 };
-/* Given a binary tree, print its nodes in inorder*/
+
 typedef struct node* Node;
 
 void inorder(Node node)
 {
     if (node == NULL)
         return;
-
-    /* first recur on left child */
     inorder(node->left);
-
-    /* then print the data of node */
     printf("%d ", node->data);
-    /* now recur on right child */
     inorder(node->right);
 }
 
@@ -27,14 +22,8 @@ void preorder(Node node)
 {
     if (node == NULL)
         return;
-
-    /* first print data of node */
     printf("%d ", node->data);
-
-    /* then recur on left sutree */
     preorder(node->left);
-
-    /* now recur on right subtree */
     preorder(node->right);
 }
 
@@ -42,14 +31,8 @@ void postorder(Node node)
 {
     if (node == NULL)
         return;
-
-    // first recur on left subtree
     postorder(node->left);
-
-    // then recur on right subtree
     postorder(node->right);
-
-    // now deal with the node
     printf("%d ", node->data);
 }
 
@@ -134,20 +117,20 @@ int equalTrees(Node node1, Node node2)
     return 0;
 }
 
-Node printInternalNodes(Node node)
+void printInternalNodes(Node node)
 {
     if (node == NULL)
-        return NULL;
+        return ;
     if (node->left != NULL || node->right != NULL)
         printf("%d ", node->data);
     printInternalNodes(node->left);
     printInternalNodes(node->right);
 }
 
-Node printLeafNodes(Node node)
+void printLeafNodes(Node node)
 {
     if (node == NULL)
-        return NULL;
+        return ;
     if (node->left == NULL && node->right == NULL)
         printf("%d ", node->data);
     printLeafNodes(node->left);

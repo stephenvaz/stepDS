@@ -1,0 +1,27 @@
+ int choice;
+    int dividend, divisor;
+    while (1)
+    {
+        printf("\n1. Restorind\n2.Non-Restoring\n3.Exit\n:");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            clock_t t;
+            userInput(&dividend, &divisor);
+            t = clock();
+            resDiv(dividend, divisor);
+            t = clock() - t;
+            double time_taken = ((double)t) / CLOCKS_PER_SEC; // in seconds
+            printf("\nRestroing Division took %f seconds to execute \n", time_taken);
+            break;
+        case 2:
+            /* code */
+            break;
+        case 3:
+            return 0;
+        default:
+            printf("\nInvalid choice\n");
+            break;
+        }
+    }
