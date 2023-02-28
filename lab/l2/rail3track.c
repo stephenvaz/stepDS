@@ -21,18 +21,35 @@ QUEUE createQueue(int size)
     return q;
 }
 
+// int isEmpty(QUEUE q)
+// {
+//     if (q->r == q->f)
+//     {
+//         return 1; // if empty
+//     }
+//     return 0; // if not empty
+// }
+
 int isEmpty(QUEUE q)
 {
-    if (q->r == q->f)
+    if (q->f == -1 || q->f > q->r)
     {
         return 1; // if empty
     }
     return 0; // if not empty
 }
 
+// int isFull(QUEUE q)
+// {
+//     if (q->r - q->f == q->size)
+//     {
+//         return 1; // if full
+//     }
+//     return 0; // if not full
+// }
 int isFull(QUEUE q)
 {
-    if (q->r - q->f == q->size)
+    if (q->r == q->size - 1)
     {
         return 1; // if full
     }

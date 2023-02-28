@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//linear probing hash table
 struct hashItem{
     int value;
     char status;
@@ -90,7 +89,7 @@ int main()
     clear();
     table = (struct hashItem*)malloc(size*sizeof(struct hashItem));
     while(1) {
-        printf("\n1. Search\n2. Insert\n3. Delete\n4. Display\n5. Exit\n:");
+        printf("1. Search\n2. Insert\n3. Delete\n4. Display\n5. Exit\n:");
         int choice;
         scanf("%d", &choice);
         clear();
@@ -124,7 +123,5 @@ int main()
         getchar();
         clear();
     }
-    // displayTable(size);
-
     return 0;
 }

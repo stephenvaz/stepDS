@@ -1,108 +1,100 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap (int *a, int *b)
+struct node
 {
-    int * temp;
+    int data;
+    struct node *next;
+} *head, *tail, *temp, *new;
+
+void traversal(struct node *root)
+{
+    struct node *test = malloc(sizeof(struct node));
+    test = root;
+    while (test != NULL)
+    {
+        printf("%d ", test->data);
+        test = test->next;
+    }
+}
+
+void swap(int *a, int *b)
+{
+    int *temp;
     *temp = *a;
     *a = *b;
-    *b = *temp;
+    *b = *a;
 }
 
-void maxheap (int a[], int n, int i)
+void pairswap(struct node *head)
 {
-    int largest = i;
-    int l = 2i;
-    int r = 2i+1;
-    while(l<=n && a[l]>a[largest])
+    struct node *temp = (struct node *)malloc(sizeof(struct node *));
+    struct node *temp1 = (struct node *)malloc(sizeof(struct node *));
+    temp = head;
+    while (temp->next != NULL && temp->next != NULL)
     {
-        largest = l;
-    }
-    while(r<=n && a[r]>a[largest])
-    {
-        largest = r;
-    }
-    if(largest != i)
-    {
-        swap(&a[largest],&a[i]);
-        maxheap(a,n,largest);
+        swap(&temp->data, &temp->next->data);
+        temp = temp->next->next;
     }
 }
 
-void buildheap (int a[], int n)
+struct node *createNode(struct node *head, int data)
 {
-    for(int i = n/2 ; i > 0 ; i--)
+    if (head == NULL)
     {
-        maxheap(a,n,i);
+        temp = malloc(sizeof(struct node));
+        temp->data = data;
+        temp->next = NULL;
+        head = temp;
     }
-}
-
-void Delete(int a[],int n)
-{
-    int i = 1, j = 2, val;
-    val = a[1];
-    a[1] = a[n];
-    while (j < n-1)
+    else
     {
-        if (a[j+1]>a[j])
+        temp = head;
+        while (temp->next != NULL)
         {
-            j = j+1;
+            temp = temp->next;
         }
-        if (a[i] < a[j])
-        {
-            swap(&a[i],&a[j]);
-            i = j;
-            j = 2*j;
-        }
-        else
-            break;
+        temp->next = malloc(sizeof(struct node));
+        temp->next->data = data;
+        temp->next->next = NULL;
     }
-    printf("\nDeleted element = %d",val);
-    a[n] = val;
-}
-
-int largest(int a[], int n , int k)
-{
-    for (int i = 1; i < k; i++)
-    {
-        Delete(a,(n+1)-i);
-        printf("%d",a[i]);
-    }
-    return a[1];
-   
+    return head;
 }
 
 int main()
 {
-   int i, n, k, a[100];
-   a[0] = 0;
-   printf("\nEnter the no of nodes in the tree: \n");
-   scanf("%d",&n);
-   for(int i = 1 ; i<= n ; i++)
-   {
-       printf("\nEnter the %d element of the tree: \n",i);
-       scanf("%d",&a[i]);
-   }
-    printf("\n");
-    buildheap(a,n);
-     printf("\n");
-    for(i=1;i <= n;i++)
-    {
-      printf("%d ",a[i]);
-    }
-    for (i=7; i>0; i--)
-    {
-        Delete(a,i);
-    }
-    printf("\n");
-    for(i=1;i <= n;i++)
-    {
-      printf("%d ",a[i]);
-    }
+    int data, choice;
+    // while(choice)
+    // {
+    //     new = malloc(sizeof(struct node));
+    //     printf("\nEnter the value to be inserted in the linked list: ");
+    //     scanf("%d",&data);
+    //     new->data = data;
+    //     if(head == NULL)
+    //     {
+    //         head = new;
+    //         tail = new;
+    //     }
+    //     else
+    //     {
+    //         tail = new;
+    //         tail->next = NULL;
+    //     }
 
-    printf("\nEnter the kth element : ");
-    scanf("%d",&k);
-    printf("\n%d largest element of heap is : %d",n,largest(a,n,k));
-
+    //     printf("Press\n1-Continue\n0-Exit");
+    //     scanf("%d",&choice);
+    // }
+    head = NULL;
+    do
+    {
+        printf("\nEnter the value to be inserted in the linked list: ");
+        scanf("%d", &data);
+        head = createNode(head, data);
+        printf("Press\n1-Continue\n0-Exit");
+        scanf("%d", &choice);
+    } while (choice != 0);
+    traversal(head);
+    pairswap(head);
+    traversal(head);
     return 0;
 }

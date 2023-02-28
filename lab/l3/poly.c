@@ -1,24 +1,29 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct Node {
+struct Node
+{
     int val, pow;
     struct Node *next;
-}*head,*tail, *temp,*flag;
+} *head, *tail, *temp, *flag;
 
-typedef struct Node* NODE;
+typedef struct Node *NODE;
 
-NODE createNode(NODE head, int val, int pow) {
-    if(head == NULL) {
+NODE createNode(NODE head, int val, int pow)
+{
+    if (head == NULL)
+    {
         temp = (NODE)malloc(sizeof(NODE));
         temp->val = val;
         temp->pow = pow;
         temp->next = NULL;
         head = temp;
     }
-    else {
+    else
+    {
         temp = head;
-        while (temp->next != NULL) {
+        while (temp->next != NULL)
+        {
             temp = temp->next;
         }
         temp->next = (NODE)malloc(sizeof(NODE));
@@ -29,26 +34,30 @@ NODE createNode(NODE head, int val, int pow) {
     return head;
 }
 
-void display(NODE head) {
+void display(NODE head)
+{
     temp = head;
-    while(temp != NULL) {
+    while (temp != NULL)
+    {
         printf("%dx^%d + ", temp->val, temp->pow);
         temp = temp->next;
     }
     printf("\n");
 }
 
-int main() {
+int main()
+{
     int val, pow;
     char ch;
     head = NULL;
-    do {
+    do
+    {
         printf("Enter the value and power of the term: ");
         scanf("%d %d", &val, &pow);
         head = createNode(head, val, pow);
         printf("Do you want to enter more terms? (y/n): ");
         scanf(" %c", &ch);
-    } while(ch == 'y');
+    } while (ch == 'y');
     display(head);
     return 0;
 }

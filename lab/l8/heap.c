@@ -101,10 +101,9 @@ void heapSort(int* a, int size) {
     }
 }
 
-
 int main()
 {
-    // int arr[] = {70, 50,40,45,35,39,16,10,9,60};
+   // int arr[] = {70, 50,40,45,35,39,16,10,9,60};
     int heap[MAX] = {0};
     printf("Enter size of heap: ");
     int size;

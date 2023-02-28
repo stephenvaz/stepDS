@@ -10,7 +10,7 @@ struct  node
 
 typedef struct node* NODE;
 
-Node
+
 
 
 int main()

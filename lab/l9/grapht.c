@@ -196,10 +196,25 @@ int isStackEmpty(stack s)
         return 0;
 }
 
-int peek(stack s) {
-    if(isStackEmpty(s))
-        return -1;
-}
+// void dfs(graph g, int sV) {
+//     stack s = createStack(10);
+//     g->visited[sV] = 1;
+//     push(s, sV);
+//     while (!isStackEmpty(s)) {
+//         int cV = pop(s);
+//         printf("%d ", cV);
+//         node temp = g->adjLists[cV];
+//         while (temp) {
+//             int aV = temp->vertex;
+//             if (g->visited[aV] == 0) {
+//                 g->visited[aV] = 1;
+//                 push(s, aV);
+//             }
+//             temp = temp->next;
+//         }
+//     }
+// }
+
 
 void dfs(graph g, int sV) {
     stack s = createStack(10);
@@ -209,6 +224,7 @@ void dfs(graph g, int sV) {
         int cV = pop(s);
         printf("%d ", cV);
         node temp = g->adjLists[cV];
+        
         while (temp) {
             int aV = temp->vertex;
             if (g->visited[aV] == 0) {
@@ -221,30 +237,47 @@ void dfs(graph g, int sV) {
     }
 }
 
+// void dfs(struct Graph* graph, int vertex) {
+//   struct node* adjList = graph->adjLists[vertex];
+//   struct node* temp = adjList;
+
+//   graph->visited[vertex] = 1;
+//   printf("Visited %d \n", vertex);
+
+//   while (temp != NULL) {
+//     int connectedVertex = temp->vertex;
+
+//     if (graph->visited[connectedVertex] == 0) {
+//       dfs(graph, connectedVertex);
+//     }
+//     temp = temp->next;
+//   }
+// }
+
 int main()
 {
     // adjacency list
     int n;
-    printf("BFS\n");
-    printf("Enter the number of vertices: ");
-    scanf("%d", &n);
+    // printf("BFS\n");
+    // printf("Enter the number of vertices: ");
+    // scanf("%d", &n);
     graph g = createGraph(n);
-    while (1)
-    {
-        printf("Enter the source and destination vertices: ");
-        int src, dest;
-        scanf("%d %d", &src, &dest);
-        if (src == -1 && dest == -1)
-            break;
-        addEdge(g, src, dest);
-    }
-    printGraph(g);
-    printf("Enter the starting vertex: ");
-    int sV;
-    scanf("%d", &sV);
-    bfs(g, sV);
-    free(g);
+    // while (1)
+    // {
+    //     printf("Enter the source and destination vertices: ");
+    //     int src, dest;
+    //     scanf("%d %d", &src, &dest);
+    //     if (src == -1 && dest == -1)
+    //         break;
+    //     addEdge(g, src, dest);
+    // }
     // printGraph(g);
+    // printf("Enter the starting vertex: ");
+    int sV;
+    // scanf("%d", &sV);
+    // bfs(g, sV);
+    // free(g);
+    // // printGraph(g);
     printf("\nDFS\n");
     printf("Enter the number of vertices: ");
     scanf("%d", &n);
